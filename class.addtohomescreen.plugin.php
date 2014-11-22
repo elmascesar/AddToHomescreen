@@ -33,7 +33,7 @@ class AddToHomescreenPlugin extends Gdn_Plugin {
             'href' => $Image
         ));
         $Sender->Head->AddTag('link', array(
-            'rel' => 'shortcut-icon',
+            'rel' => 'shortcut icon',
             'sizes' => '196x196',
             'href' => $Image
         ));
