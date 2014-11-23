@@ -3,7 +3,7 @@
 $PluginInfo['AddToHomescreen'] = array(
     'Name' => 'AddToHomescreen',
     'Description' => '"Add to home screen" - Integration, idea by phreak',
-    'Version' => '0.1',
+    'Version' => '0.2',
     'Author' => 'Bleitivt',
     'SettingsUrl' => '/settings/addtohomescreen',
     'MobileFriendly' => true
@@ -12,9 +12,6 @@ $PluginInfo['AddToHomescreen'] = array(
 class AddToHomescreenPlugin extends Gdn_Plugin {
 
     public function Base_Render_Before($Sender) {
-        if (!C('AddToHomescreen.Image') || !$Sender->Head) {
-            return;
-        }
         $Sender->Head->AddTag('meta', array(
             'name' => 'apple-mobile-web-app-capable',
             'content' => 'yes'
@@ -26,16 +23,6 @@ class AddToHomescreenPlugin extends Gdn_Plugin {
         $Sender->Head->AddTag('meta', array(
             'name' => 'apple-mobile-web-app-title',
             'content' => C('AddToHomescreen.Title', C('Garden.HomepageTitle'))
-        ));
-        $Image = Gdn_Upload::Url(C('AddToHomescreen.Image'));
-        $Sender->Head->AddTag('link', array(
-            'rel' => 'apple-touch-icon-precomposed',
-            'href' => $Image
-        ));
-        $Sender->Head->AddTag('link', array(
-            'rel' => 'icon',
-            'sizes' => '196x196',
-            'href' => $Image
         ));
         $Sender->AddCssFile('addtohomescreen.css', 'plugins/AddToHomescreen');
         $Sender->AddJsFile('addtohomescreen.min.js', 'plugins/AddToHomescreen');
@@ -52,12 +39,8 @@ class AddToHomescreenPlugin extends Gdn_Plugin {
         $Conf->Initialize(array(
             'AddToHomescreen.Title' => array(
                 'Control' => 'textbox',
-                'LabelCode' => 'Title',
+                'LabelCode' => 'Mobile web app title (for iDevices)',
                 'Default' => C('AddToHomescreen.Title', C('Garden.HomepageTitle'))
-            ),
-            'AddToHomescreen.Image' => array(
-                'Control' => 'imageupload',
-                'LabelCode' => T('The touch icon to be shown on the home screen')
             )
         ));
         $Conf->RenderAll();
