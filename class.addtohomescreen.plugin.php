@@ -27,7 +27,7 @@ class AddToHomescreenPlugin extends Gdn_Plugin {
         $Sender->AddCssFile('addtohomescreen.css', 'plugins/AddToHomescreen');
         $Sender->AddJsFile('addtohomescreen.min.js', 'plugins/AddToHomescreen');
         $Sender->Head->AddString(
-            '<script type="text/javascript">addToHomescreen();</script>'
+            '<script type="text/javascript">addToHomescreen({skipFirstVisit: true, maxDisplayCount: 1});</script>'
         );
     }
 
