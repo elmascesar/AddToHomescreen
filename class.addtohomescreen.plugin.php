@@ -3,7 +3,7 @@
 $PluginInfo['AddToHomescreen'] = array(
     'Name' => 'AddToHomescreen',
     'Description' => '"Add to home screen" - Integration, idea by phreak',
-    'Version' => '0.2',
+    'Version' => '0.3',
     'Author' => 'Bleitivt',
     'License' => 'GNU GPL2',
     'SettingsUrl' => '/settings/addtohomescreen',
