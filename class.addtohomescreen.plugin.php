@@ -1,6 +1,6 @@
-<?php if (!defined('APPLICATION')) exit();
+<?php
 
-$PluginInfo['AddToHomescreen'] = array(
+$PluginInfo['AddToHomescreen'] = [
     'Name' => 'AddToHomescreen',
     'Description' => '"Add to home screen" - Integration, idea by phreak',
     'Version' => '0.3',
@@ -8,43 +8,43 @@ $PluginInfo['AddToHomescreen'] = array(
     'License' => 'GNU GPL2',
     'SettingsUrl' => '/settings/addtohomescreen',
     'MobileFriendly' => true
-);
+];
 
 class AddToHomescreenPlugin extends Gdn_Plugin {
 
-    public function Base_Render_Before($Sender) {
-        $Sender->Head->AddTag('meta', array(
+    public function base_render_before($sender) {
+        $sender->Head->addTag('meta', [
             'name' => 'apple-mobile-web-app-capable',
             'content' => 'yes'
-        ));
-        $Sender->Head->AddTag('meta', array(
+        ]);
+        $sender->Head->addTag('meta', [
             'name' => 'mobile-web-app-capable',
             'content' => 'yes'
-        ));
-        $Sender->Head->AddTag('meta', array(
+        ]);
+        $sender->Head->addTag('meta', [
             'name' => 'apple-mobile-web-app-title',
-            'content' => C('AddToHomescreen.Title', C('Garden.HomepageTitle'))
-        ));
-        $Sender->AddCssFile('addtohomescreen.css', 'plugins/AddToHomescreen');
-        $Sender->AddJsFile('addtohomescreen.min.js', 'plugins/AddToHomescreen');
-        $Sender->Head->AddString(
+            'content' => c('AddToHomescreen.Title', c('Garden.HomepageTitle'))
+        ]);
+        $sender->addCssFile('addtohomescreen.css', 'plugins/AddToHomescreen');
+        $sender->addJsFile('addtohomescreen.min.js', 'plugins/AddToHomescreen');
+        $sender->Head->addString(
             '<script type="text/javascript">addToHomescreen({skipFirstVisit: true, maxDisplayCount: 1});</script>'
         );
     }
 
-    public function SettingsController_AddToHomescreen_Create($Sender) {
-        $Sender->Permission('Garden.Settings.Manage');
-        $Sender->SetData('Title', T('AddToHomescreen Settings'));
-        $Sender->AddSideMenu('dashboard/settings/plugins');
-        $Conf = new ConfigurationModule($Sender);
-        $Conf->Initialize(array(
-            'AddToHomescreen.Title' => array(
+    public function settingsController_addToHomescreen_create($sender) {
+        $sender->permission('Garden.Settings.Manage');
+        $sender->title(T('AddToHomescreen Settings'));
+        $sender->addSideMenu('dashboard/settings/plugins');
+        $conf = new ConfigurationModule($sender);
+        $conf->initialize([
+            'AddToHomescreen.Title' => [
                 'Control' => 'textbox',
                 'LabelCode' => 'Mobile web app title (for iDevices)',
-                'Default' => C('AddToHomescreen.Title', C('Garden.HomepageTitle'))
-            )
-        ));
-        $Conf->RenderAll();
+                'Default' => c('AddToHomescreen.Title', c('Garden.HomepageTitle'))
+            ]
+        ]);
+        $conf->renderAll();
     }
 
 }
