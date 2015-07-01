@@ -34,7 +34,6 @@ class AddToHomescreenPlugin extends Gdn_Plugin {
 
     public function settingsController_addToHomescreen_create($sender) {
         $sender->permission('Garden.Settings.Manage');
-        $sender->title(T('AddToHomescreen Settings'));
         $sender->addSideMenu('dashboard/settings/plugins');
         $conf = new ConfigurationModule($sender);
         $conf->initialize([
@@ -44,6 +43,7 @@ class AddToHomescreenPlugin extends Gdn_Plugin {
                 'Default' => c('AddToHomescreen.Title', c('Garden.HomepageTitle'))
             ]
         ]);
+        $sender->title(t('AddToHomescreen Settings'));
         $conf->renderAll();
     }
 
