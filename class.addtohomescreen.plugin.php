@@ -3,11 +3,12 @@
 $PluginInfo['AddToHomescreen'] = [
     'Name' => 'AddToHomescreen',
     'Description' => '"Add to home screen" - Integration, idea by phreak',
-    'Version' => '0.3',
+    'Version' => '0.4',
     'Author' => 'Bleitivt',
     'License' => 'GNU GPL2',
     'SettingsUrl' => '/settings/addtohomescreen',
-    'MobileFriendly' => true
+    'MobileFriendly' => true,
+    'GitHub' => 'bleistivt/AddToHomescreen'
 ];
 
 class AddToHomescreenPlugin extends Gdn_Plugin {
