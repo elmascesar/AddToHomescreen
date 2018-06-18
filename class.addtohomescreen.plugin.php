@@ -1,16 +1,5 @@
 <?php
 
-$PluginInfo['AddToHomescreen'] = [
-    'Name' => 'AddToHomescreen',
-    'Description' => '"Add to home screen" - Integration, idea by phreak',
-    'Version' => '0.4',
-    'Author' => 'Bleitivt',
-    'License' => 'GNU GPL2',
-    'SettingsUrl' => '/settings/addtohomescreen',
-    'MobileFriendly' => true,
-    'GitHub' => 'bleistivt/AddToHomescreen'
-];
-
 class AddToHomescreenPlugin extends Gdn_Plugin {
 
     public function base_render_before($sender) {
@@ -35,7 +24,7 @@ class AddToHomescreenPlugin extends Gdn_Plugin {
 
     public function settingsController_addToHomescreen_create($sender) {
         $sender->permission('Garden.Settings.Manage');
-        $sender->addSideMenu('dashboard/settings/plugins');
+
         $conf = new ConfigurationModule($sender);
         $conf->initialize([
             'AddToHomescreen.Title' => [
